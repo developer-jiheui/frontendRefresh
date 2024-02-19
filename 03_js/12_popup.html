@@ -19,8 +19,8 @@
     // opener : 현재창을 열어준 부모창을 의미하는 키워드
 
     document.getElementById('btn').addEventListener('click', function(){
-      opener.document.getElementById('c').innerHTML = window.document.getElementById('msg').textContent;
-      window.open("12_bom.html");
+      opener.document.getElementById('c').textContent = window.document.getElementById('msg').textContent;
+      window.close(); 
     })
   </script>
 </body>
