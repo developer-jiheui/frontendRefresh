@@ -110,10 +110,31 @@
     })
   </script>
 
+<div>
+  <a id="link3" href="https://www.gdu.co.kr/">링크3</a>
+</div>
+<script>
+  var myWindow = null;
+  document.getElementById('link3').addEventListener('click', function() {
+    if(myWindow == null || myWindow.closed){
+      var features= 'width=' + (screent.width/2);
+    features += ' , height =' + (screen.height/2);
+    features += ' ,top =' + (screen.height/4);
+    features += ' , left =' + (screen.width/4);
+    
+    myWindow = window.open('https://www.gdu.co.kr/', '', features)
+    }
+    else{
+      myWindow.focus();
+    }
+  })
+</script>
+
   <div>
     <form>
       <input type="text" id="a">
       <button id="btn" type="button">전송</button>
+      <div>자식창에tㅓ 전송한 값은 <span id='c'></span>입니다.</div>
     </form>
   </div>
   <script>

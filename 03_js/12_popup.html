@@ -10,6 +10,18 @@
   <h1>자식창</h1>
 
   <div>부모창에 입력한 값은 <span id="b"></span>입니다.</div>
+  <div id='msg'>데이터</div>
+  <div>
+    <button id="btn">전송</button>
+  </div>
+  <script>
 
+    // opener : 현재창을 열어준 부모창을 의미하는 키워드
+
+    document.getElementById('btn').addEventListener('click', function(){
+      opener.document.getElementById('c').innerHTML = window.document.getElementById('msg').textContent;
+      window.open("12_bom.html");
+    })
+  </script>
 </body>
 </html>
