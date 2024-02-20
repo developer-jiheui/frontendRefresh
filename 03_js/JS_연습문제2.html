@@ -6,7 +6,7 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <script src='../assets/lib/decimal.js'></script>
   <div id="div1"></div>
   <button id="btn1">버튼1</button>
   <style>
@@ -23,6 +23,7 @@
     // })
     /*
       btn1을 클릭하면 0.5초마다 임의의 색상으로 div1의 색상을 변경하시오.
+      Hint) rgb(0,0,0) ~ rgb(255,255,255) 방식으로 색상을 표현한다.
     */
 
     const max = 255;
@@ -50,7 +51,6 @@
     /*
       btn2를 클릭하면 테이블을 완성하시오.
       번호   썸네일    제목     감독
-
     */
     var movies = {
       year: 2023,
@@ -127,8 +127,8 @@
 
 
     document.getElementById('btn3').addEventListener('click',function(){
-      var num = parseFloat(document.getElementById('number').value);
-      var dg = parseInt(document.getElementById('digit').value);
+      var num = new Decimal(document.getElementById('number').value);
+      var dg = new Decimal(document.getElementById('digit').value);
       var result = document.getElementById('result');
       var round_num;
 
@@ -153,7 +153,7 @@
 
       }
       console.log(num);
-      round_num = Math.ceil(num);
+      round_num = Math.round(num);
       console.log(round_num);
       console.log(decimal_changer);
       console.log(round_num*decimal_changer);
