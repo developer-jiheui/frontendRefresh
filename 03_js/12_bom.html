@@ -110,25 +110,6 @@
     })
   </script>
 
-<div>
-  <a style="cursor: pointer;" id="link3">링크3</a>
-</div>
-<script>
-  var myWindow = null;
-  document.getElementById('link3').addEventListener('click', function() {
-    if(myWindow == null || myWindow.closed){
-      var features= 'width=' + (screent.width/2);
-    features += ' , height =' + (screen.height/2);
-    features += ' ,top =' + (screen.height/4);
-    features += ' , left =' + (screen.width/4);
-    myWindow = window.open('https://www.gdu.co.kr/', '', features)
-    }
-    else{
-      myWindow.focus();
-    }
-  })
-</script>
-
   <div>
     <a style="cursor: pointer;" id="link3">링크3</a>
   </div>

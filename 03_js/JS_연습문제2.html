@@ -10,15 +10,28 @@
   <div id="div1"></div>
   <button id="btn1">버튼1</button>
   <style>
-    #div {
+    #div1 {
       width: 100px;
       height: 100px;
     }
   </style>
   <script>
+    // const max = 255;
+    // document.getElementById('btn1').addEventListener('click',function(){
+    //   document.getElementById('btn').setAttribute(color, rgb(233,233,233))
+    //   //evt.target.color = rgb( Math.floor(Math.random() * max), Math.floor(Math.random() * max), Math.floor(Math.random() * max))
+    // })
     /*
       btn1을 클릭하면 0.5초마다 임의의 색상으로 div1의 색상을 변경하시오.
     */
+
+    const max = 255;
+    const btn_div = document.getElementById('div1');
+    const button = document.getElementById('btn1');
+    button.addEventListener('click', function changeColor(){
+      btn_div.style.backgroundColor = "rgb("+ Math.floor(Math.random() * max)+ ","+ Math.floor(Math.random() * max)+ ","+ Math.floor(Math.random() * max);
+      setTimeout(changeColor, 500);
+    })
 
   </script>
 
@@ -63,6 +76,30 @@
         }
       ]
     }
+    const table = document.getElementById('movies');
+    document.getElementById('btn2').addEventListener('click', function(){
+        // table.innerHTML += "<td>"+ movies.items[0].no+"</td><td>"+ movies.items[0].thumbnail+"</td><td>" +movies.items[0].title+"</td><td>" +movies.items[0].director+"</td>"
+        // table.innerHTML += "<td>"
+        // table.innerHTML += "<td>"+ 
+        // table.innerHTML += "<td>"+ movies.items[0].director+"</td>"
+
+      // for (let i = 0; i < movies.items.length; i++) {
+      //   table.innerHTML += "<tr>"
+      //   table.innerHTML += "<td>"+ movies.items[i].no+"</td>"
+      //   table.innerHTML += "<td>"+ movies.items[i].thumbnail+"</td>"
+      //   table.innerHTML += "<td>"+ movies.items[i].title+"</td>"
+      //   table.innerHTML += "<td>"+ movies.items[i].director+"</td>"
+      //   table.innerHTML += "</tr>"
+        
+      // }
+      movies.items.forEach(element =>  {
+        table.innerHTML += "<td>"+ element.no+"</td><td>"+ element.thumbnail+"</td><td>" 
+          + element.title+"</td><td>" +element.director+"</td>";
+    });
+
+  
+  });
+    
 
   </script>
 
@@ -87,6 +124,54 @@
       555.555   -3      1000
     */
     
+
+
+    document.getElementById('btn3').addEventListener('click',function(){
+      var num = parseFloat(document.getElementById('number').value);
+      var dg = parseFloat(document.getElementById('digit').value);
+      var result = document.getElementById('result');
+      var round_num;
+
+      result.readOnly = "false";
+
+      var decimal_changer =1;
+
+      if(dg>=0){
+        
+        while(dg>0){
+          num = num*10;
+          decimal_changer = decimal_changer/10;
+          dg--;
+        }
+      }else{
+        dg = dg*-1;
+        while(dg>0){
+          num = num*1/10;
+          decimal_changer = decimal_changer*10;
+          dg--;
+        }
+
+      }
+      round_num = Math.round(num);
+      result.placeholder = round_num*decimal_changer;
+      // if(dg >=0){
+      //   result.placeholder = num.toFixed(dg);
+      // }
+      // else{
+      //   var positive_dg = dg* -1;
+      //   var decimal_point= dg* -1;
+      //   var decimal_changer =1;
+
+      //   while(positive_dg>0){
+      //     num = num/10;
+      //     decimal_changer = decimal_changer*10;
+      //     positive_dg--;
+      //   }
+      //   result.placeholder= num.tofixed(decimal_point)*decimal_changer;
+      // }
+
+    })
+
   </script>
   
   <hr>
@@ -103,7 +188,7 @@
     }
   </style>
   <script>
-    /* 5초마다 자동으로 div4의 배경 이미지를 변경하시오. (animal1.jpg ~ animal10.jpg 중 하나 사용)
+    /* 5초마다 자동으로 div4의 배경 이미지를 변경하시오. (animal1.jpg ~ animal10.jpg 중 하나 사용)*/
 
   </script>
 
