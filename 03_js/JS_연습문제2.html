@@ -22,7 +22,7 @@
     //   //evt.target.color = rgb( Math.floor(Math.random() * max), Math.floor(Math.random() * max), Math.floor(Math.random() * max))
     // })
     /*
-      btn1을 클릭하면 0.5초마다 임의의 색상으로 div1의 색상을 변경하시오.
+      btn1을 클릭하면 0.1초마다 임의의 색상으로 div1의 색상을 변경하시오.
       Hint) rgb(0,0,0) ~ rgb(255,255,255) 방식으로 색상을 표현한다.
     */
 
@@ -31,7 +31,7 @@
     const button = document.getElementById('btn1');
     button.addEventListener('click', function changeColor(){
       btn_div.style.backgroundColor = "rgb("+ Math.floor(Math.random() * max)+ ","+ Math.floor(Math.random() * max)+ ","+ Math.floor(Math.random() * max);
-      setTimeout(changeColor, 500);
+      setTimeout(changeColor, 100);
     })
 
   </script>
@@ -93,7 +93,7 @@
         
       // }
       movies.items.forEach(element =>  {
-        table.innerHTML += "<td>"+ element.no+"</td><td>"+ element.thumbnail+"</td><td>" 
+        table.innerHTML += "<td>"+ element.no+"</td><td><img src='"+ element.thumbnail+"', width 2rem></td><td>" 
           + element.title+"</td><td>" +element.director+"</td>";
     });
 
@@ -217,7 +217,7 @@
     */
     let msg = "";
     let today;
-    let theday = new Date(2024, 10, 11, 0, 0, 0);
+    let theday = new Date(2024, 10, 14, 0, 0, 0);
     let dday;
     let year;
     let month;
