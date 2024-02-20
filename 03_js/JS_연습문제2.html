@@ -128,7 +128,7 @@
 
     document.getElementById('btn3').addEventListener('click',function(){
       var num = parseFloat(document.getElementById('number').value);
-      var dg = parseFloat(document.getElementById('digit').value);
+      var dg = parseInt(document.getElementById('digit').value);
       var result = document.getElementById('result');
       var round_num;
 
@@ -152,7 +152,11 @@
         }
 
       }
-      round_num = Math.round(num);
+      console.log(num);
+      round_num = Math.ceil(num);
+      console.log(round_num);
+      console.log(decimal_changer);
+      console.log(round_num*decimal_changer);
       result.placeholder = round_num*decimal_changer;
       // if(dg >=0){
       //   result.placeholder = num.toFixed(dg);
@@ -189,7 +193,12 @@
   </style>
   <script>
     /* 5초마다 자동으로 div4의 배경 이미지를 변경하시오. (animal1.jpg ~ animal10.jpg 중 하나 사용)*/
+    function changeImage(){
+        document.getElementById('div4').style.backgroundImage = "url(../../assets/image/animal" +Math.ceil(Math.random() * 10)+".jpg)"; 
+        setTimeout(changeImage, 5000)
 
+      }
+      changeImage();
   </script>
 
   <hr>
@@ -206,7 +215,37 @@
       Hint) 남은 시간 = 디데이's 타임스탬프 - 현재's 타임스탬프
       타임스탬프로 계산된 남은 시간은 일/시/분/초 단위로 변환 후 처리한다.
     */
-    
+    let msg = "";
+    let today;
+    let theday = new Date(2024, 10, 11, 0, 0, 0);
+    let dday;
+    let year;
+    let month;
+    let day;
+    let hour;
+    let minute;
+    let second;
+
+
+
+    function ddayCalculator(){
+      today = new Date(Date.now());
+      dday = new Date(theday-today);
+
+     if(dday<0){
+      document.getElementById('div5').innerHTML ="<h3>D-DAY가 지났습니다</h3>";
+     }
+     else{
+      msg = dday.getMonth()+" 개월" + dday.getDay() + " 일" 
+      + dday.getHours()+" 시간" + dday.getMinutes()+" 분" + dday.getSeconds() + " 초 남았습니다";
+      
+      document.getElementById('div5').innerHTML ="<h3>오늘 날짜 : "+ today.toDateString()+ "</h3><br>" +"<h3>D-Day : 2024-11-14 (수능일)</h3>"
+     +"<h2>"+ msg +"</h2>";
+     }    
+     setTimeout(ddayCalculator, 500);
+    }
+
+    ddayCalculator();
   </script>
 
 
