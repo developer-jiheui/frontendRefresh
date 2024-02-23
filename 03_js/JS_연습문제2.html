@@ -6,7 +6,7 @@
   <title>Document</title>
 </head>
 <body>
-  
+  <script src='../assets/lib/decimal.js'></script>
   <div id="div1"></div>
   <button id="btn1">버튼1</button>
   <style>
@@ -16,24 +16,38 @@
     }
   </style>
   <script>
+    // const max = 255;
+    // document.getElementById('btn1').addEventListener('click',function(){
+    //   document.getElementById('btn').setAttribute(color, rgb(233,233,233))
+    //   //evt.target.color = rgb( Math.floor(Math.random() * max), Math.floor(Math.random() * max), Math.floor(Math.random() * max))
+    // })
     /*
       btn1을 클릭하면 0.1초마다 임의의 색상으로 div1의 색상을 변경하시오.
       Hint) rgb(0,0,0) ~ rgb(255,255,255) 방식으로 색상을 표현한다.
     */
-    function getRandomNumber(begin, count) {
-      return parseInt(Math.random() * count + begin);
-    }
-    function ex01() {
-      document.getElementById('btn1').addEventListener('click', function(){
-        document.getElementById('div1').style.backgroundColor
-          = 'rgb(' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ')';
-        setInterval(function(){
-          document.getElementById('div1').style.backgroundColor
-            = 'rgb(' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ')';
-        }, 100);
-      })
-    }
-    ex01();
+
+    const max = 255;
+    const btn_div = document.getElementById('div1');
+    const button = document.getElementById('btn1');
+    button.addEventListener('click', function changeColor(){
+      btn_div.style.backgroundColor = "rgb("+ Math.floor(Math.random() * max)+ ","+ Math.floor(Math.random() * max)+ ","+ Math.floor(Math.random() * max);
+      setTimeout(changeColor, 100);
+    })
+
+    // function getRandomNumber(begin, count) {
+    //   return parseInt(Math.random() * count + begin);
+    // }
+    // function ex01() {
+    //   document.getElementById('btn1').addEventListener('click', function(){
+    //     document.getElementById('div1').style.backgroundColor
+    //       = 'rgb(' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ')';
+    //     setInterval(function(){
+    //       document.getElementById('div1').style.backgroundColor
+    //         = 'rgb(' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ',' + getRandomNumber(0,256) + ')';
+    //     }, 100);
+    //   })
+    // }
+    // ex01();
   </script>
 
   <hr>
@@ -89,6 +103,31 @@
       })
       document.getElementById('movies').innerHTML = result;
     }
+    const table = document.getElementById('movies');
+    document.getElementById('btn2').addEventListener('click', function(){
+        // table.innerHTML += "<td>"+ movies.items[0].no+"</td><td>"+ movies.items[0].thumbnail+"</td><td>" +movies.items[0].title+"</td><td>" +movies.items[0].director+"</td>"
+        // table.innerHTML += "<td>"
+        // table.innerHTML += "<td>"+ 
+        // table.innerHTML += "<td>"+ movies.items[0].director+"</td>"
+
+      // for (let i = 0; i < movies.items.length; i++) {
+      //   table.innerHTML += "<tr>"
+      //   table.innerHTML += "<td>"+ movies.items[i].no+"</td>"
+      //   table.innerHTML += "<td>"+ movies.items[i].thumbnail+"</td>"
+      //   table.innerHTML += "<td>"+ movies.items[i].title+"</td>"
+      //   table.innerHTML += "<td>"+ movies.items[i].director+"</td>"
+      //   table.innerHTML += "</tr>"
+        
+      // }
+      movies.items.forEach(element =>  {
+        table.innerHTML += "<td>"+ element.no+"</td><td><img src='"+ element.thumbnail+"', width 2rem></td><td>" 
+          + element.title+"</td><td>" +element.director+"</td>";
+    });
+
+  
+  });
+    
+
     // 함수 호출 & 이벤트
     document.getElementById('btn2').addEventListener('click', ex02);
   </script>
@@ -114,6 +153,59 @@
       555.555   -2      600
       555.555   -3      1000
     */
+    
+
+
+    document.getElementById('btn3').addEventListener('click',function(){
+      var num = new Decimal(document.getElementById('number').value);
+      var dg = new Decimal(document.getElementById('digit').value);
+      var result = document.getElementById('result');
+      var round_num;
+
+      result.readOnly = "false";
+
+      var decimal_changer =1;
+
+      if(dg>=0){
+        
+        while(dg>0){
+          num = num*10;
+          decimal_changer = decimal_changer/10;
+          dg--;
+        }
+      }else{
+        dg = dg*-1;
+        while(dg>0){
+          num = num*1/10;
+          decimal_changer = decimal_changer*10;
+          dg--;
+        }
+
+      }
+      console.log(num);
+      round_num = Math.round(num);
+      console.log(round_num);
+      console.log(decimal_changer);
+      console.log(round_num*decimal_changer);
+      result.placeholder = round_num*decimal_changer;
+      // if(dg >=0){
+      //   result.placeholder = num.toFixed(dg);
+      // }
+      // else{
+      //   var positive_dg = dg* -1;
+      //   var decimal_point= dg* -1;
+      //   var decimal_changer =1;
+
+      //   while(positive_dg>0){
+      //     num = num/10;
+      //     decimal_changer = decimal_changer*10;
+      //     positive_dg--;
+      //   }
+      //   result.placeholder= num.tofixed(decimal_point)*decimal_changer;
+      // }
+
+    })
+
     /*
       Math.ceil(number * Math.pow(10, digit)) / Math.pow(10, digit)
       --------------------------------------------------------------
@@ -123,22 +215,22 @@
       Math.ceil(555.555 * 0.1)  / 0.1  === 560
       Math.ceil(555.555 * 0.01) / 0.01 === 600
     */
-    function myCeil(number, digit) {
-      digit = digit || 0;
-      return Math.ceil(number * Math.pow(10, digit)) / Math.pow(10, digit);
-    }
-    function ex03() {
-      document.getElementById('btn3').addEventListener('click', function(){
-        var number = document.getElementById('number').value;
-        var digit = document.getElementById('digit').value;
-        if(isNaN(number) || isNaN(digit)) {
-          alert('숫자만 입력하세요');
-          return;
-        }
-        document.getElementById('result').value = myCeil(number, digit);
-      })
-    }
-    ex03();
+    // function myCeil(number, digit) {
+    //   digit = digit || 0;
+    //   return Math.ceil(number * Math.pow(10, digit)) / Math.pow(10, digit);
+    // }
+    // function ex03() {
+    //   document.getElementById('btn3').addEventListener('click', function(){
+    //     var number = document.getElementById('number').value;
+    //     var digit = document.getElementById('digit').value;
+    //     if(isNaN(number) || isNaN(digit)) {
+    //       alert('숫자만 입력하세요');
+    //       return;
+    //     }
+    //     document.getElementById('result').value = myCeil(number, digit);
+    //   })
+    // }
+    // ex03();
   </script>
   
   <hr>
@@ -155,14 +247,23 @@
     }
   </style>
   <script>
-    /* 5초마다 자동으로 div4의 배경 이미지를 변경하시오. (animal1.jpg ~ animal10.jpg 중 하나 사용) */
-    function ex04() {
-      setInterval(function(){
-        document.getElementById('div4').style.backgroundImage
-          = 'url(../../assets/image/animal' + getRandomNumber(1,10) + '.jpg)';
-      }, 5000);
-    }
-    ex04();
+    /* 5초마다 자동으로 div4의 배경 이미지를 변경하시오. (animal1.jpg ~ animal10.jpg 중 하나 사용)*/
+    function changeImage(){
+        document.getElementById('div4').style.backgroundImage = "url(../../assets/image/animal" +Math.ceil(Math.random() * 10)+".jpg)"; 
+        setTimeout(changeImage, 5000)
+
+      }
+      changeImage();
+    // /* 5초마다 자동으로 div4의 배경 이미지를 변경하시오. (animal1.jpg ~ animal10.jpg 중 하나 사용) */
+    // function ex04() {
+    //   setInterval(function(){
+    //     document.getElementById('div4').style.backgroundImage
+    //       = 'url(../../assets/image/animal' + getRandomNumber(1,10) + '.jpg)';
+    //   }, 5000);
+    // }
+    // ex04();
+
+    
   </script>
 
   <hr>
@@ -179,33 +280,64 @@
       Hint) 남은 시간 = 디데이's 타임스탬프 - 현재's 타임스탬프
       타임스탬프로 계산된 남은 시간은 일/시/분/초 단위로 변환 후 처리한다.
     */
-    function ex05() {
-      var now = new Date();
-      var dday = new Date(2024, 10, 14);  // 2024-11-14
-      var remainMillis = dday.getTime() - now.getTime();
-      var remainSeconds = parseInt(remainMillis / 1000);
-      var day = parseInt(remainSeconds / 60 / 60 / 24);
-      var msg = 'D-DAY';
-      if(remainSeconds < 0) {
-        msg += '가 지났습니다.';
-      } else {
-        if(day >= 1) {
-          msg += '&nbsp;' + day + '일';
-        } else {
-          var hour = parseInt(remainSeconds / 60 / 60) % 24;
-          var minute = parseInt(remainSeconds / 60) % 60;
-          var second = remainSeconds % 60;
-          msg += '&nbsp;'
-              + String(hour).padStart(2,'0')
-              + ':'
-              + String(minute).padStart(2,'0')
-              + ':'
-              + String(second).padStart(2,'0');
-        }
-      }
-      document.getElementById('div5').innerHTML = msg;
+    let msg = "";
+    let today;
+    let theday = new Date(2024, 10, 14, 0, 0, 0);
+    let dday;
+    let year;
+    let month;
+    let day;
+    let hour;
+    let minute;
+    let second;
+
+
+
+    function ddayCalculator(){
+      today = new Date(Date.now());
+      dday = new Date(theday-today);
+
+     if(dday<0){
+      document.getElementById('div5').innerHTML ="<h3>D-DAY가 지났습니다</h3>";
+     }
+     else{
+      msg = dday.getMonth()+" 개월" + dday.getDay() + " 일" 
+      + dday.getHours()+" 시간" + dday.getMinutes()+" 분" + dday.getSeconds() + " 초 남았습니다";
+      
+      document.getElementById('div5').innerHTML ="<h3>오늘 날짜 : "+ today.toDateString()+ "</h3><br>" +"<h3>D-Day : 2024-11-14 (수능일)</h3>"
+     +"<h2>"+ msg +"</h2>";
+     }    
+     setTimeout(ddayCalculator, 500);
     }
-    setInterval(ex05, 1000);
+
+    ddayCalculator();
+    // function ex05() {
+    //   var now = new Date();
+    //   var dday = new Date(2024, 10, 14);  // 2024-11-14
+    //   var remainMillis = dday.getTime() - now.getTime();
+    //   var remainSeconds = parseInt(remainMillis / 1000);
+    //   var day = parseInt(remainSeconds / 60 / 60 / 24);
+    //   var msg = 'D-DAY';
+    //   if(remainSeconds < 0) {
+    //     msg += '가 지났습니다.';
+    //   } else {
+    //     if(day >= 1) {
+    //       msg += '&nbsp;' + day + '일';
+    //     } else {
+    //       var hour = parseInt(remainSeconds / 60 / 60) % 24;
+    //       var minute = parseInt(remainSeconds / 60) % 60;
+    //       var second = remainSeconds % 60;
+    //       msg += '&nbsp;'
+    //           + String(hour).padStart(2,'0')
+    //           + ':'
+    //           + String(minute).padStart(2,'0')
+    //           + ':'
+    //           + String(second).padStart(2,'0');
+    //     }
+    //   }
+    //   document.getElementById('div5').innerHTML = msg;
+    // }
+    // setInterval(ex05, 1000);
   </script>
 
 </body>

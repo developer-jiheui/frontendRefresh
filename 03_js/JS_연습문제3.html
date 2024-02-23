@@ -17,6 +17,22 @@
       light1.png, light2.png 이미지를 교환하고
       btn1의 ON, OFF 텍스트를 교환하시오.
     */
+    var btn1 = document.getElementById('btn1');
+    var div_image = document.getElementById('div1').firstChild;
+    btn1.addEventListener('click', function(){
+      if(btn1.textContent.length==2){
+        btn1.textContent = "OFF"
+        document.getElementById('div1').children[0].firstChild.src ="../../assets/image/light2.png";
+
+      }else{
+        btn1.textContent = "ON"
+        document.getElementById('div1').children[0].firstChild.src ="../../assets/image/light1.png";
+
+      }
+    
+
+
+    })
 
   </script>
 
@@ -53,7 +69,32 @@
   </style>
   <script>
     /* animal1.jpg ~ animal10.jpg 를 이용하여 이미지 슬라이드를 만드시오. */
-
+    btn_pre = document.getElementById('btn-prev');
+    btn_next = document.getElementById('btn-next');
+    img_nums = document.getElementById('img-no');
+    img_container = document.getElementById('img-container');
+    curr_num = 1;    
+        
+    btn_pre.addEventListener('click',function(){
+      if(curr_num==1){
+        curr_num = 10;
+      }else{
+        curr_num--;
+      }  
+      
+      document.getElementById('img-container').style.backgroundImage = "url('../../assets/image/animal"+curr_num+".jpg')"
+      img_nums.textContent = curr_num +"/10";
+    })
+    btn_next.addEventListener('click',function(){
+      if(curr_num==10){
+        curr_num = 1;
+      }else{
+        curr_num++;
+      }  
+      
+      document.getElementById('img-container').style.backgroundImage = "url('../../assets/image/animal"+curr_num+".jpg')"
+      img_nums.textContent = curr_num +"/10";
+    })
   </script>
 
   <hr>
@@ -97,6 +138,9 @@
     }
   </style>
   <script>
+    document.getElementById('thumbnail-images').addEventListener('mouseover',function(evt){
+      document.getElementById('original-image').style.backgroundImage =evt.target.style.backgroundImage;
+    })
     /* 5개 thumbnail 이미지에 마우스를 가져다대면 해당 이미지를 original-image로 표시하시오. */
     
   </script>
@@ -122,6 +166,34 @@
     </div>
   </div>
   <style>
+    label{
+      border: 1px solid #fff;
+      padding: 10px;
+      display: block;
+      position: relative;
+      margin: 10px;
+      cursor: pointer;
+    }
+    label::before{
+      background-image: url('../../assets/image/check1.png');      
+      background-size: 20px 20px;
+      display: inline-flex;
+      width: 20px; 
+      height: 20px;
+      content:"";
+        
+    }
+    input[type=checkbox]{
+      display : none;
+    }
+    :checked + label::before {
+      background-image : url('../../assets/image/check2.png');
+      background-size: 20px 20px;
+      display: inline-flex;
+      width: 20px; 
+      height: 20px;
+      content:"";
+    }
     /* 
       CSS 문제.
       해제하면 check1.png를 checkbox 대신 나타내시오.
@@ -147,35 +219,57 @@
       }
     }
   </script>
+   <hr>
 
-  <hr>
+   <div id="div5">
+     <h1>다음 중 front 과목이 아닌 것은?</h1>
+     <ol>
+       <li>HTML</li>
+       <li>CSS</li>
+       <li>JavaScript</li>
+       <li>JQuery</li>
+       <li>Java</li>
+     </ol>
+     <div><button type="button" id="btn5" data-state="close-answer">정답보기</button></div>
+     <div id="answer">5</div>
+   </div>
+   <style>
+     #answer {
+       display: none;
+     }
+   </style>
+   <script>
+     /*
+       btn5를 클릭할때마다
+       정답이 보기 상태를 토글시키시오.
+       Hint) data-state="close-answer"는 정답 숨김 상태를 의미하고,
+             data-state="open-answer"는 정답 보임 상태를 의미한다.
+     */
+    
+    let btn5 = document.getElementById('btn5');
+    let answer = document.getElementById('answer');
+    
+      function toggleButton(){
+        if(btn5.dataset.state.includes('close')){
+          btn5.dataset.state = 'open-answer';
+          answer.style.display = 'block'
+          btn5.innerHTML = "정답숨기기"
+        }
+        else{
+          btn5.dataset.state = 'close-answer';
+          answer.style.display = 'none'
+          btn5.textContent = "정답보기"
 
-  <div id="div5">
-    <h1>다음 중 front 과목이 아닌 것은?</h1>
-    <ol>
-      <li>HTML</li>
-      <li>CSS</li>
-      <li>JavaScript</li>
-      <li>JQuery</li>
-      <li>Java</li>
-    </ol>
-    <div><button type="button" id="btn5" data-state="close-answer">정답보기</button></div>
-    <div id="answer">5</div>
-  </div>
-  <style>
-    #answer {
-      display: none;
-    }
-  </style>
-  <script>
-    /*
-      btn5를 클릭할때마다
-      정답이 보기 상태를 토글시키시오.
-      Hint) data-state="close-answer"는 정답 숨김 상태를 의미하고,
-            data-state="open-answer"는 정답 보임 상태를 의미한다.
-    */
+        }
+         
+      }
 
-  </script>
+      document.getElementById('btn5').addEventListener('click', function(){
+        toggleButton();
+      })
+        
+      
 
+   </script>
 </body>
 </html>
