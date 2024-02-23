@@ -574,41 +574,39 @@
     </style>
     <script>
       
-      const getAuthors= ()=>{
+      const getAuthors= (url, arg )=>{
+        const request = new Request(url);
+
+        fetch(request, {method : arg})
+        .then((response)=>{
+          if(response.ok)
+            return response.text();
+        })
+        .then((responsedData)=>{
+          let domParser = new DOMParser();
+          let xmlDoc = domParser.parseFromString(responsedData, 'application/xml');
+          let authors = xmlDoc.getElementsByTagName('object');
+          let result = "<h2>"
+            console.log(authors);
+
+           
+
+          authors.forEach(author => {
+            result+= "Name : "  + author.querySelector('name').textContent +"<br>"
+          });
+
+          document.querySelector("#div3 > div").innerHTML += result;
+        })
 
       }
 
-      let result ="<ul>";
-
-      document.querySelector('#div3 > button').addEventListener('click',function(){
-        fetch('https://thetestrequest.com/authors.xml', method)
-      .then((response)=>{
-        if(response.ok)
-          return response.text();
+      document.querySelector("#div3 > button").addEventListener('click', function(){
+        getAuthors('https://thetestrequest.com/authors.xml', 'GET');
       })
-      .then((resData)=>{
-        // parseFromString(string, mime-type)
-        // mime-type
-        //   1) text/plain       : 텍스트 데이터
-        //   2) text/html        : HTML 데이터
-        //   3) application/xml  : XML 데이터
-        //   4) application/json : JSON 데이터
-        let domParser = new DOMParser();
-         let xmlDoc = domParser.parseFromString(resData, 'application/xml');
-         let authors = xmlDoc.document.getElementsByTagName('object');
-         authors.forEach(author => {
-           result += "Name : "+ xmlDoc.document.querySelector("object > name")
-         });
-
-        console.log("HERE")
-        console.log(xmlDoc);
-      });
-
-      document.querySelector("#div3 >div").innerHTML += result;
-
-      })
-      
-
+    
+ // for (let i = 0; i < authors.length; i++) {
+            //   result+= "Name : "  + authors[i].getElementsByTagName('name')[i].textContent +"<br>"
+            // }
     </script>
 
     <script>
