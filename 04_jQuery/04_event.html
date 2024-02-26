@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../../assets/lib/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        1.on()
+        2.off()
+        3.one()
+            1) 한번만 동작하는 이벤트
+            2) 형식
+             event대상.one(이벤트 타입, 이벤트 리스너)
+        
+        4.trigger()
+            1) 강제로 이벤트를 발생시킨다.
+        */
+
+    </script>    
+
+    <div>
+        <button type="button" id="btn1">버튼1</button>
+    </div>
+    <script>
+        $('#btn1').on('click', function(evt){
+            // $('#btn1').after('<p>'+evt.target.textContent+'</p>')
+            //$('<div>'+evt.target.textContent+'</div>').after($('#btn1'));
+            //alert(evt.target.textContent);
+            //alert($(evt.target).text());
+            alert($(this).text());
+        })
+        //$('#btn1').click(function(){})
+
+        /*
+            이벤트대상
+            1. evt.target
+            2. this  :  ()=>{} 익명함수에서는 사용불가능
+            
+        */
+    </script>
+
+</body>
+</html>
