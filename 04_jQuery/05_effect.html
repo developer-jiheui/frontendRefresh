@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body>
+<style>
+    #img-container {
+        width: 384px;
+        height: 256px;
+        background-image: url('../../assets/image/animal10.jpg');
+        background-size: 384px;
+    }
+</style>
+<div>
+    <button type="button" id="btn-open">OPEN</button>
+    <button type="button" id="btn-close">CLOSE</button>
+    <button type="button" id="btn-toggle">TOGGLE</button>
+</div>
+<div id="img-container"></div>
+
+<script>
+    /* show(), fadeIn(), slideDown()
+    $('#btn-close').on('click', function (evt) {
+        $('#img-container').fadeOut(3000,'linear',function(){
+            alert('closed');
+        });
+    });
+    */
+    $('#btn-close').on('click', function (evt) {
+        $('#img-container').slideUp(3000,'linear',function(){
+            alert('닫혔다')
+        });
+    })
+
+</script>
+
+<script>
+    $('#btn-open').on('click',function(evt){
+        $('#img-container').fadeIn(3000,function(){
+            alert('열렸다');
+        })
+    });
+</script>
+
+</body>
+</html>
