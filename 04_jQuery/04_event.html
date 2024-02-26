@@ -15,12 +15,12 @@
             1) 한번만 동작하는 이벤트
             2) 형식
              event대상.one(이벤트 타입, 이벤트 리스너)
-        
+
         4.trigger()
             1) 강제로 이벤트를 발생시킨다.
         */
 
-    </script>    
+    </script>
 
     <div>
         <button type="button" id="btn1">버튼1</button>
@@ -39,9 +39,26 @@
             이벤트대상
             1. evt.target
             2. this  :  ()=>{} 익명함수에서는 사용불가능
-            
+
         */
     </script>
 
+    <div>
+        <ul>
+            <li class="menu">김치찌개</li>
+            <li class="menu">순두부찌개</li>
+            <li class="menu">된장찌개</li>
+
+        </ul>
+    </div>
+
+    <script>
+            $('.menu').on('click', function(evt){
+                alert(evt.target.textContent);
+            })
+    </script>
+    <div>
+
+    </div>
 </body>
 </html>
