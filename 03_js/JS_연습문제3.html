@@ -29,7 +29,7 @@
         document.getElementById('div1').children[0].firstChild.src ="../../assets/image/light1.png";
 
       }
-    
+
 
 
     })
@@ -73,15 +73,15 @@
     btn_next = document.getElementById('btn-next');
     img_nums = document.getElementById('img-no');
     img_container = document.getElementById('img-container');
-    curr_num = 1;    
-        
+    curr_num = 1;
+
     btn_pre.addEventListener('click',function(){
       if(curr_num==1){
         curr_num = 10;
       }else{
         curr_num--;
-      }  
-      
+      }
+
       document.getElementById('img-container').style.backgroundImage = "url('../../assets/image/animal"+curr_num+".jpg')"
       img_nums.textContent = curr_num +"/10";
     })
@@ -90,11 +90,29 @@
         curr_num = 1;
       }else{
         curr_num++;
-      }  
-      
+      }
+
       document.getElementById('img-container').style.backgroundImage = "url('../../assets/image/animal"+curr_num+".jpg')"
       img_nums.textContent = curr_num +"/10";
     })
+
+    // var img_no = document.getElementById('img-no');
+    // var img_container = document.getElementById('img-container');
+    // var btn_prev = document.getElementById('btn-prev');
+    // var btn_next = document.getElementById('btn-next');
+    //
+    // var slide_no = 1;
+    // function change_img(number) {
+    //   slide_no += number;
+    //   if(slide_no > 10) slide_no = 1;
+    //   if(slide_no < 1)  slide_no = 10;
+    //   img_container.style.backgroundImage = 'url(../../assets/image/animal' + slide_no + '.jpg)';
+    //   img_no.textContent = slide_no + ' / 10';
+    // }
+    //
+    // btn_prev.onclick = function() { change_img(-1); }
+    // btn_next.onclick = function() { change_img(1); }
+
   </script>
 
   <hr>
@@ -143,6 +161,19 @@
     })
     /* 5개 thumbnail 이미지에 마우스를 가져다대면 해당 이미지를 original-image로 표시하시오. */
     
+    // var original_image = document.getElementById('original-image');
+    // var thumbnail_images = document.querySelectorAll('#thumbnail-images > div');
+    //
+    // for(var i = 0; i < thumbnail_images.length; i++) {
+    //   thumbnail_images[i].onmouseover = function(evt) {
+    //     original_image.style.backgroundImage = 'url(../../assets/image/'+ evt.target.dataset.fileName +')';
+    //     evt.target.style.border = '5px solid orange';
+    //   }
+    //   thumbnail_images[i].onmouseout = function(evt) {
+    //     evt.target.style.border = '5px solid rgba(0, 0, 0, 0)';
+    //   }
+    // }
+
   </script>
 
   <hr>
@@ -175,13 +206,13 @@
       cursor: pointer;
     }
     label::before{
-      background-image: url('../../assets/image/check1.png');      
+      background-image: url('../../assets/image/check1.png');
       background-size: 20px 20px;
       display: inline-flex;
-      width: 20px; 
+      width: 20px;
       height: 20px;
       content:"";
-        
+
     }
     input[type=checkbox]{
       display : none;
@@ -190,11 +221,11 @@
       background-image : url('../../assets/image/check2.png');
       background-size: 20px 20px;
       display: inline-flex;
-      width: 20px; 
+      width: 20px;
       height: 20px;
       content:"";
     }
-    /* 
+    /*
       CSS 문제.
       해제하면 check1.png를 checkbox 대신 나타내시오.
       체크하면 check2.png를 checkbox 대신 나타내시오.
@@ -245,10 +276,10 @@
        Hint) data-state="close-answer"는 정답 숨김 상태를 의미하고,
              data-state="open-answer"는 정답 보임 상태를 의미한다.
      */
-    
+
     let btn5 = document.getElementById('btn5');
     let answer = document.getElementById('answer');
-    
+
       function toggleButton(){
         if(btn5.dataset.state.includes('close')){
           btn5.dataset.state = 'open-answer';
@@ -259,16 +290,11 @@
           btn5.dataset.state = 'close-answer';
           answer.style.display = 'none'
           btn5.textContent = "정답보기"
-
         }
-         
       }
-
       document.getElementById('btn5').addEventListener('click', function(){
         toggleButton();
       })
-        
-      
 
    </script>
 </body>
