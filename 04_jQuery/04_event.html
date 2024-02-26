@@ -7,7 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body>
-
+  
   <script>
 
     /*
@@ -19,17 +19,17 @@
           이벤트대상.on(이벤트타입, 이벤트리스너)
         3) 동적 요소 (정적 요소도 가능)
           부모요소.on(이벤트타입, 이벤트대상, 이벤트리스너)
-
+      
       2. off()
         1) 등록된 이벤트를 제거한다.
         2) 형식
           이벤트대상.off(이벤트타입)
-
+      
       3. one()
         1) 한 번만 동작하는 이벤트를 작성할 수 있다.
         2) 형식
           이벤트대상.one(이벤트타입, 이벤트리스너)
-
+      
       4. trigger()
         1) 강제로 이벤트를 발생시킨다.
         2) 형식
@@ -115,36 +115,35 @@
     btn2.on('click', function(evt){
       for(var i = 0; i < menu.length; i++) {
         var str = '<div>';
-        str += menu[i].name;
-        str += '&nbsp;';
-        str += menu[i].price;
-        str += '&nbsp;';
+        str += '<span>' + menu[i].name + '</span>';
+        str += '<span>' + menu[i].price + '</span>';
         str += '<button class="btn-alert" type="button">확인</button>';
-        //이벤트에서 만들어진 동적요소 : dynamic elemnet
         str += '</div>';
         div.append(str);
       }
     });
-
-    $(document).on('click','.btn-alert', function(evt){
-        alert($(evt.target).prev().prev().text());
+    $(document).on('click', '.btn-alert', function(evt){
+      alert($(evt.target).prev().prev().text());
     });
   </script>
+
+  <hr>
 
   <div>
     <button type="button" id="btn3">버튼3</button>
     <div>안녕하세요</div>
   </div>
   <script>
-    var  btn3 = $('#btn3');
+    var btn3 = $('#btn3');
     var div = btn3.next();
-    div.on('click',function(evt){
-        alert(evt.target.textContent);
+    div.on('click', function(evt){
+      alert(evt.target.textContent);
     })
     btn3.on('click', function(evt){
-      //div의 click 이벤트를 동작시킨다
+      // div의 click 이벤트를 동작시킨다.
       div.trigger('click');
     })
   </script>
+
 </body>
 </html>
